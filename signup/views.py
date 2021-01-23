@@ -8,8 +8,18 @@ from django.shortcuts import render, redirect
 
 
 def home_view(request):
-	return render(request,'home.html')
+	return render(request,'signup/home.html')
 
 
 def signup_view(request):
-	pass
+	form = UserCreationForm(request.POST)
+	if form.is_valid():
+		form.save()
+		username = form.cleaned_data.get('username')
+		password  = form.cleaned_data.get('password1')
+		user = authenticate(user=username, password=password)
+		login(request,user)
+
+		return redirect('home')
+
+	return render(request,'signup/signup.html',{'form':form})

@@ -1,0 +1,17 @@
+
+<html>
+<head>
+<title>
+Login
+</title>
+<body>
+<h2> Login </h2>
+<form  method="POST">
+{% csrf_token %}
+{{form}}
+  <button type = "submit">LogIn</button>
+</form>
+
+Don't have an account? <a href="/signup" target="blank"><strong>register here</strong></a>!
+</body>
+</html>

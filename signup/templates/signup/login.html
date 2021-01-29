@@ -1,17 +1,45 @@
-
-<html>
-<head>
-<title>
-Login
-</title>
-<body>
+{% extends "signup/base.html" %}
+​
+{% block content %}
+    
 <h2> Login </h2>
-<form  method="POST">
+<form    method="POST">
+
 {% csrf_token %}
 {{form}}
+
   <button type = "submit">LogIn</button>
+
+{% for message in messages %}
+
+<p> {{ message }} </p>
+
+{% endfor %}
 </form>
+{% for error in field.errors %}
+        <p style="color: red">{{ error }}</p>
+{% endfor %}
 
 Don't have an account? <a href="/signup" target="blank"><strong>register here</strong></a>!
-</body>
-</html>
+{% endblock %}
+​
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

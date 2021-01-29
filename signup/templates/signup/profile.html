@@ -1,20 +1,25 @@
-<html>
-<head>
-<title>
-</title>
-</head>
+{% extends "signup/base2.html" %}
 
-<body>
+{% block content %}
+
 {% if user.is_authenticated %}
 {% csrf_token %}
 
-
+<input type="hidden" id="csrf_token" value='{"csrfmiddlewaretoken": "{{ csrf_token }}"}'>
 
 <br> 
 <h1><center>Welcome {{profile.user}}</center></h1>
 <br>
 	
-<a href = "{% url 'profile' %}"> Edit Profile</a>
+<a href = "{% url 'edit' %}"> Edit Profile</a>
+
+<hr/>
+
+<img src = "{{ profile.profile_pic.url }}"  height = 200 />
+
+
+
+
 
 <hr/>
 
@@ -34,9 +39,18 @@ Birth Date: {{profile.birthdate}}
 <a href = "{% url 'logout' %}"> Logout</a>
 
 
-{% endif %}
-</body>
+{% endif %}    
+{% endblock %}
 
 
 
-</html>
+
+
+
+
+
+
+
+
+
+

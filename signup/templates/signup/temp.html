@@ -1,0 +1,66 @@
+<form method="post">
+
+
+  {% csrf_token %}
+  {% for field in form %}
+    <p>
+      {{ field.label_tag }}<br>
+      {{ field }}
+      {% if field.help_text %}
+        <small style="color: grey">{{ field.help_text }}</small>
+      {% endif %}
+      {% for error in field.errors %}
+        <p style="color: red">{{ error }}</p>
+      {% endfor %}
+    </p>
+  {% endfor %}
+  <button type="submit">Sign up</button>
+</form>
+
+
+
+
+
+
+
+
+
+
+{% if user.is_authenticated %}
+{% csrf_token %}
+
+<input type="hidden" id="csrf_token" value='{"csrfmiddlewaretoken": "{{ csrf_token }}"}'>
+
+<br> 
+<h1><center>Welcome {{profile.user}}</center></h1>
+<br>
+  
+<a href = "{% url 'edit' %}"> Edit Profile</a>
+
+<hr/>
+
+<!--img src = "{{ profile.profile_pic.url }}"  height = 200 /-->
+
+
+
+
+
+<hr/>
+
+
+Name: {{ profile.first_name }} {{ profile.last_name }}
+<hr/>
+Email: {{ user.email}}
+<hr/>
+Bio: {{profile.bio}}
+
+<hr/>
+Location: {{profile.location}}
+
+<hr/>
+Birth Date: {{profile.birthdate}}
+<hr/>
+<a href = "{% url 'logout' %}"> Logout</a>
+
+
+{% endif %}

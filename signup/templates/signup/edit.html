@@ -1,11 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
+
+
+{% extends "signup/base2.html" %}
 {% load crispy_forms_tags %}
 
-  <title></title>
-</head>
-<body>
+{% block content %}
+
 {% if user.is_authenticated %}
 <form method="post">
 
@@ -16,6 +15,14 @@
 
 </form>
   {% endif %}
-</body>
-</html>
+    
+{% endblock %}
+
+
+
+
+
+
+
+
 

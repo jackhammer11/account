@@ -3,7 +3,8 @@ from .models import Profile
 
 
 class ProfileForm(ModelForm):
+
 	class Meta:
 		model = Profile
-		fields = ['bio','location','birthdate']
-
+		fields = ['profile_pic','bio','location','birthdate']
+		

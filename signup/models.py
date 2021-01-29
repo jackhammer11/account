@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from .form import SignUpForm as s
+from PIL import Image
 # Create your models here.
 class Profile(models.Model):
 
@@ -13,12 +14,17 @@ class Profile(models.Model):
 	bio = models.TextField(max_length=500,blank=True)
 	location = models.CharField(max_length=30,blank=True)
 	birthdate = models.DateField(null=True,blank=True)
+	profile_pic = models.ImageField(null = True,blank = True)
 
 	class Meta:
 		db_table = "signup_profile"
 
 	def __str__(self):
 		return self.first_name
+
+
+
+
 
 
 @receiver(post_save, sender=User)
@@ -30,3 +36,4 @@ def update_profile_signal(sender, instance, created, **kwargs):
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
+
